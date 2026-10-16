@@ -2,6 +2,8 @@
 
 For [Simulate Before You Act](https://build.doo.ooo/challenges/simulate-before-act).
 
+[Open the live workbench](https://rehearse-change-lab.choggyacc.chatgpt.site/) · [90-second walkthrough](https://rehearse-change-lab.choggyacc.chatgpt.site/walkthrough.mp4) · [Public source](https://github.com/m7mdd77/rehearse-change-lab)
+
 Rehearse turns a retention request into a bounded deletion filter, executes the exact SQL on a copy of an actual SQLite database, and shows the full diff. A human can execute that particular preview or revise it. Execution checks the current state and compares actual effects with the prediction inside a transaction. Unexpected effects roll back before commit.
 
 The action is real: persisted ticket, note and attachment rows are deleted through an HTTP service, then can be restored. **The workspace contains fictional disposable data. No production database, real customer account, file attachment, email or payment service is connected.** Attachment rows are metadata, not physical files. Predictions are exact within this bounded database model, not probabilities about the outside world.
@@ -47,6 +49,8 @@ Queued payloads are cleared after claim. Delivered/failed/timed-out results are 
 The worker claims each job once and does not replay a model call or mutation after delivery failure. Retrying the same operation reference returns its cached result if recorded; preview consumption also prevents duplicate deletion. A crash after domain commit but before response-cache insertion can leave a successful receipt without a returned response. **Inspect Receipts after an interrupted execution**, rather than assuming it failed. This is not a distributed exactly-once guarantee.
 
 ## Verification and limits
+
+All 26 automated checks pass. The deployed Worker/D1/PC path also passed an actual two-call DeepSeek run: clarification, a blocked broad batch, exact deletion, exact restoration and rollback of an unexpected customer update. See [the public run receipt](docs/evidence/public-live.json); its 991 reported tokens describe that run, not total project cost.
 
 `node scripts/verify-live.mjs <approved-base-url>` is operator-only and makes **two paid AI calls**. It verifies clarification, a too-wide batch, actual deletion, exact restoration and an unpredicted-effect rollback through HTTP. Its evidence separates real provider runs from injected tests.
 

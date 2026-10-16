@@ -2,8 +2,8 @@ import { randomUUID, timingSafeEqual } from 'node:crypto';
 import { validateCommand } from './contract.js';
 class HttpError extends Error { constructor(status,message){super(message);this.status=status;} }
 const json=(status,value,headers={})=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
-async function readBody(request) {
-  let size=0;const chunks=[];for await(const c of request.body??[]){size+=c.length;if(size>8000)throw new HttpError(413,'Request too large.');chunks.push(c);}
+async function readBody(request,max=8000) {
+  let size=0;const chunks=[];for await(const c of request.body??[]){size+=c.length;if(size>max)throw new HttpError(413,'Request too large.');chunks.push(c);}
   const bytes=new Uint8Array(size);let i=0;for(const c of chunks){bytes.set(c,i);i+=c.length;}
   try{return JSON.parse(new TextDecoder().decode(bytes));}catch{throw new HttpError(400,'Invalid JSON.');}
 }
@@ -22,7 +22,7 @@ export async function online(db,env) {
 async function worker(request,env,path) {
   const actual=Buffer.from(request.headers.get('authorization')??''),expected=Buffer.from('Bearer '+env.REHEARSE_WORKER_TOKEN);
   if(!env.REHEARSE_WORKER_TOKEN||actual.length!==expected.length||!timingSafeEqual(actual,expected))throw new HttpError(401,'Unauthorized.');
-  const input=await readBody(request),db=env.DB,now=Date.now();
+  const input=await readBody(request,path==='complete'?130000:8000),db=env.DB,now=Date.now();
   if(path==='ping'){await heartbeat(db);return {online:true};}
   if(path==='claim') {
     await heartbeat(db);await cleanup(db);

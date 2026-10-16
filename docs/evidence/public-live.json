@@ -1,0 +1,105 @@
+{
+  "verifiedAt": "2026-10-16T16:12:01.757Z",
+  "base": "https://rehearse-change-lab.choggyacc.chatgpt.site",
+  "scope": "Actual SQLite through the HTTP service, fictional data only. Two genuine DeepSeek calls; no synthetic provider fallback.",
+  "ai": [
+    {
+      "decision": "plan",
+      "plan": {
+        "team": "delivery",
+        "status": "resolved",
+        "closedBefore": "2026-09-01",
+        "excludeHeld": true
+      },
+      "reason": "Explicit request to delete resolved delivery tickets closed before 2026-09-01 while preserving retention-held tickets; all constraints satisfied.",
+      "model": "deepseek-v4-flash",
+      "usage": {
+        "inputTokens": 369,
+        "outputTokens": 132,
+        "cacheReadTokens": 0
+      }
+    },
+    {
+      "decision": "clarify",
+      "plan": null,
+      "reason": "I can plan deletion of resolved delivery tickets, but no cutoff date is specified. Please provide an explicit closedBefore date (YYYY-MM-DD, between 2026-01-01 and 2026-10-16); tickets resolved strictly before that date would be included, with held tickets excluded.",
+      "model": "deepseek-v4-flash",
+      "usage": {
+        "inputTokens": 355,
+        "outputTokens": 135,
+        "cacheReadTokens": 0
+      }
+    }
+  ],
+  "outcomes": {
+    "draftDidNotWrite": true,
+    "missingDateClarified": true,
+    "broadBatchBlocked": true,
+    "narrowBatch": {
+      "tickets": 3,
+      "notes": 6,
+      "attachments": 3
+    },
+    "actualDelete": true,
+    "exactRestore": true,
+    "unpredictedCustomerUpdateRolledBack": true,
+    "versionUnchangedOnFailure": true
+  },
+  "receipts": [
+    {
+      "id": "90bc78c6-b5d1-48bd-986b-fc9482932154",
+      "at": 1792167106347,
+      "type": "executed",
+      "runId": "c5cb15b5-6e6c-4514-a7f2-83599c94d03f",
+      "previewId": "020fe95d-5a4a-4d6a-a354-7bf6e2a82e9b",
+      "counts": {
+        "tickets": 3,
+        "notes": 6,
+        "attachments": 3,
+        "customers": 0,
+        "total": 12
+      },
+      "matchedPrediction": true,
+      "beforeVersion": 1,
+      "afterVersion": 2,
+      "summary": "Deleted 3 tickets and 9 dependent records."
+    },
+    {
+      "id": "23ba87d5-02a0-45e7-88b7-87bd2b432a6e",
+      "at": 1792167108619,
+      "type": "restored",
+      "runId": "c5cb15b5-6e6c-4514-a7f2-83599c94d03f",
+      "counts": {
+        "customers": 0,
+        "tickets": 3,
+        "notes": 6,
+        "attachments": 3
+      },
+      "summary": "Restored 3 tickets, 6 notes and 3 attachments."
+    },
+    {
+      "id": "699e94b5-7d17-4b17-9b9f-b05c2a33a2f8",
+      "at": 1792167121010,
+      "type": "contained",
+      "previewId": "0f69d2ed-f3ce-4107-8d46-9d90ebc6ae97",
+      "predicted": {
+        "tickets": 3,
+        "notes": 6,
+        "attachments": 3,
+        "customers": 0,
+        "total": 12
+      },
+      "unexpected": [
+        {
+          "table": "customers",
+          "id": "C-01",
+          "field": "contact_preference",
+          "before": "email",
+          "attempted": "none"
+        }
+      ],
+      "rolledBack": true,
+      "summary": "An unpredicted customer preference change was caught. All ticket deletions and the preference change rolled back."
+    }
+  ]
+}

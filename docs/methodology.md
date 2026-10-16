@@ -4,7 +4,8 @@ Mission: [Simulate Before You Act](https://build.doo.ooo/challenges/simulate-bef
 
 ```mermaid
 flowchart LR
-  A[Read brief and disqualifications] --> B[Choose a real bounded action]
+  A[Read brief and disqualifications] --> N[Novelty check: problem, interaction, visual identity]
+  N --> B[Choose a real bounded action]
   B --> C[Specify invariants and failure case]
   C --> D[Build the complete operating loop]
   D --> E[Integrate genuine AI where useful]
@@ -14,7 +15,7 @@ flowchart LR
   F -->|failure| D
 ```
 
-Apply this sequence to every subsequent mission; completion means verified deliverables, not just a rendered page.
+Apply this sequence to every subsequent mission; completion means verified deliverables, not just a rendered page. Before building, compare the proposed job, interaction and visual grammar with earlier entries. Rehearse uses a mutation rehearsal contract, full-row diffs and recovery receipts in a blue-and-slate workbench. Future entries must earn their own distinct product and interface rather than reuse this layout.
 
 ## Product and judging contract
 
@@ -29,8 +30,8 @@ Apply this sequence to every subsequent mission; completion means verified deliv
 ## Delivery gates
 
 1. Select mission and map requirements. Complete.
-2. Implement real database, simulation, execution and rollback. In progress.
-3. Integrate live AI and the public PC-backed service. Pending.
-4. Verify normal and adversarial paths, including the browser. Pending.
-5. Publish sanitized GitHub source and public Site. Pending.
+2. Implement real database, simulation, execution and rollback. Complete; real SQLite files and online backups.
+3. Integrate live AI and the public PC-backed service. Complete; genuine local and public DeepSeek evidence recorded.
+4. Verify normal and adversarial paths, including the browser. Complete: 26 automated checks, the full public HTTP cycle and actual public browser cycle pass. The verified 90.1-second continuous video includes real AI, deletion, restore and containment. Narrow-screen browser verification remains unconfirmed because viewport overrides did not apply.
+5. Publish sanitized GitHub source and public Site. Version 2 complete; final version 3 includes the walkthrough and its link.
 6. Submit the actual entry and retain its confirmation locally. Authorized by the user's request; pending verification.

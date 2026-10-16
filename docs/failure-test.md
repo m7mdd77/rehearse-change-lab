@@ -10,4 +10,4 @@ Other meaningful checks refuse an eight-ticket batch, a plan that includes open/
 
 `test/workspace.test.js` uses actual persisted SQLite files and online backups. `test/transport.test.js` exercises the hosted queue SQL against SQLite. AI unit tests use injected responses; `scripts/verify-live.mjs` makes actual paid requests and records their model and token reports separately.
 
-The local complete HTTP loop passed with actual DeepSeek: typed plan without writes, missing-date clarification, wide-batch block, exact deletion, exact restoration and contained side effect. Evidence: `evidence/local-live.json`. Public verification is required before submission and recorded in release.md.
+The local complete HTTP loop passed with actual DeepSeek: typed plan without writes, missing-date clarification, wide-batch block, exact deletion, exact restoration and contained side effect. Evidence: `evidence/local-live.json`. The same full cycle passed through the public Worker/D1/PC service after the transport fix. Evidence: `evidence/public-live.json`; release provenance is in release.md.

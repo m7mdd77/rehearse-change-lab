@@ -1,0 +1,11 @@
+{
+  "recordedOn": "2026-10-16",
+  "url": "https://rehearse-change-lab.choggyacc.chatgpt.site/walkthrough.mp4",
+  "durationSeconds": 90.1,
+  "capture": "One continuous Chrome tab recording of the public app; no audio, cuts or substituted interactions. Transcoded to H.264 at 20 fps and fully decoded without errors.",
+  "observed": ["genuine DeepSeek draft", "simulation diff", "committed three-ticket deletion", "exact restoration", "injected customer preference write rolled back with deletions", "preserved records and persisted receipts", "eight-ticket batch blocked"],
+  "executionReceipt": "554712a0-a07b-4059-890b-2901a3e395b9",
+  "restoreReceipt": "f234acc0-7042-4fdc-ba45-500c591cfa46",
+  "containmentReceipt": "93e02452-cad7-49e2-bf19-a2017362f9ef",
+  "scope": "Fictional disposable records; actual persisted SQLite changes through the public Worker/D1/PC service."
+}
