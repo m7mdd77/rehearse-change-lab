@@ -33,5 +33,5 @@ Apply this sequence to every subsequent mission; completion means verified deliv
 2. Implement real database, simulation, execution and rollback. Complete; real SQLite files and online backups.
 3. Integrate live AI and the public PC-backed service. Complete; genuine local and public DeepSeek evidence recorded.
 4. Verify normal and adversarial paths, including the browser. Complete: 26 automated checks, the full public HTTP cycle and actual public browser cycle pass. The verified 90.1-second continuous video includes real AI, deletion, restore and containment. Narrow-screen browser verification remains unconfirmed because viewport overrides did not apply.
-5. Publish sanitized GitHub source and public Site. Version 2 complete; final version 3 includes the walkthrough and its link.
-6. Submit the actual entry and retain its confirmation locally. Authorized by the user's request; pending verification.
+5. Publish sanitized GitHub source and public Site. Complete: version 3 includes the walkthrough and its link; the clean public source passes all 26 checks.
+6. Submit the actual entry and retain its confirmation locally. Complete: DOO displayed “Entry saved” and “Update your entry.” Identity-bearing confirmation evidence stays local. No judging outcome is claimed.
