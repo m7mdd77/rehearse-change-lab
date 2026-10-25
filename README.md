@@ -1,3 +1,5 @@
+Current runtime: **GPT 6.1 Sol through AgentRouter**. See [configuration and verification](docs/sol-migration.md). Dated DeepSeek recordings remain historical evidence.
+
 # Rehearse — preview the blast radius
 
 For [Simulate Before You Act](https://build.doo.ooo/challenges/simulate-before-act).

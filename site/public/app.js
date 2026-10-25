@@ -30,11 +30,11 @@ function discardPreview(){preview=null;renderPreview();}
 for(const id of ['#team','#cutoff'])$(id).addEventListener('input',()=>{discardPreview();$('#proposal').hidden=true;status('The filter changed. Simulate again before executing.');});
 $('#intent').addEventListener('input',()=>{$('#proposal').hidden=true;});
 $('#intent-form').addEventListener('submit',async event=>{
-  event.preventDefault();status('DeepSeek is drafting a filter. No records will change.');
+  event.preventDefault();status('Sol is drafting a filter. No records will change.');
   try{
     const {proposal:p}=await request({op:'propose',intent:$('#intent').value});const box=$('#proposal');box.replaceChildren(el('strong',p.decision==='plan'?'DRAFTED BY LIVE DEEPSEEK':'ONE CLARIFICATION FIRST'),el('span',p.reason));box.hidden=false;
     if(p.decision==='plan'){$('#team').value=p.plan.team;$('#cutoff').value=p.plan.closedBefore;discardPreview();status('Review the drafted filter, then simulate its actual effects.');}
-    else status('DeepSeek needs clarification. Nothing was changed.');
+    else status('Sol needs clarification. Nothing was changed.');
   }catch(error){status(error.message);}
 });
 $('#filter-form').addEventListener('submit',async event=>{

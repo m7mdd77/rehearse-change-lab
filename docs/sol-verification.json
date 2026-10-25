@@ -1,0 +1,17 @@
+{
+  "verifiedAt": "2026-10-25T05:21:23.407Z",
+  "model": "gpt-6.1-sol",
+  "runs": [
+    {
+      "name": "rehearse",
+      "ok": true,
+      "model": "gpt-6.1-sol",
+      "usage": {
+        "inputTokens": 4376,
+        "outputTokens": 274,
+        "cacheReadTokens": 0
+      },
+      "decision": "plan"
+    }
+  ]
+}

@@ -6,13 +6,13 @@ import { validatePlan, exactKeys, requireValue, DomainError } from './contract.j
 export function configuration(env=process.env) {
   const endpoint=new URL(env.AGENTROUTER_BASE_URL??'https://agentrouter.org');
   requireValue(endpoint.protocol==='https:'&&endpoint.hostname==='agentrouter.org'&&!endpoint.username&&!endpoint.password&&!endpoint.search&&!endpoint.hash,'configuration','Only the approved AgentRouter endpoint is allowed.');
-  const model=env.AGENTROUTER_MODEL??'deepseek-v4-flash';requireValue(model==='deepseek-v4-flash','configuration','The verified DeepSeek v4 Flash model is required.');
-  const clientPath=env.CLAUDE_CODE_PATH||'C:/Users/User/.local/bin/claude.exe',key=env.AGENTROUTER_API_KEY??'';
-  return {endpoint:endpoint.origin,model,key,clientPath,configured:Boolean(key&&existsSync(clientPath))};
+  const model=env.AGENTROUTER_MODEL??'gpt-6.1-sol';requireValue(model==='gpt-6.1-sol','configuration','The verified GPT 6.1 Sol model is required.');
+  const clientPath=env.CODEX_PATH||'codex.exe',key=env.AGENTROUTER_API_KEY??'';
+  return {endpoint:endpoint.origin,model,key,clientPath,configured:Boolean(key&&(existsSync(clientPath)||!/[\\/]/.test(clientPath)))};
 }
 export function validateProposal(proposal) {
   exactKeys(proposal,['decision','plan','reason']);
-  requireValue(['plan','clarify'].includes(proposal.decision)&&typeof proposal.reason==='string'&&proposal.reason.length>0&&proposal.reason.length<=500,'invalid_model','DeepSeek returned an invalid plan.');
+  requireValue(['plan','clarify'].includes(proposal.decision)&&typeof proposal.reason==='string'&&proposal.reason.length>0&&proposal.reason.length<=500,'invalid_model','Sol returned an invalid plan.');
   if(proposal.decision==='plan')validatePlan(proposal.plan);
   else requireValue(proposal.plan===null,'invalid_model','A clarification cannot contain a deletion plan.');
   return proposal;
@@ -24,16 +24,16 @@ export function proposer(directory,{config=configuration(),client=invokeSupporte
   mkdirSync(directory,{recursive:true});const allowance=new DatabaseSync(join(directory,'ai-allowance.sqlite'));
   allowance.exec('CREATE TABLE IF NOT EXISTS attempts(at INTEGER NOT NULL)');
   const invoke=async intent=>{
-    requireValue(config.configured,'ai_offline','DeepSeek is offline. Choose a filter directly to continue.');
+    requireValue(config.configured,'ai_offline','Sol is offline. Choose a filter directly to continue.');
     const hour=now()-3600000,attempt=allowance.prepare('INSERT INTO attempts(at) SELECT ? WHERE (SELECT COUNT(*) FROM attempts WHERE at>?)<16').run(now(),hour);
     requireValue(Number(attempt.changes)===1,'ai_allowance','The AI allowance is reached. Choose the filter directly or try later.');
     const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),25000);
     try {
       const response=await client({config,messages:messages(intent),directory:join(directory,'model'),signal:controller.signal});
-      let proposal;try{proposal=JSON.parse(response.content.filter(c=>c.type==='text').map(c=>c.text).join('').replace(/^```(?:json)?\s*/,'').replace(/\s*```$/,''));}catch{throw new DomainError('invalid_model','DeepSeek did not return a valid plan. Nothing was changed.');}
+      let proposal;try{proposal=JSON.parse(response.content.filter(c=>c.type==='text').map(c=>c.text).join('').replace(/^```(?:json)?\s*/,'').replace(/\s*```$/,''));}catch{throw new DomainError('invalid_model','Sol did not return a valid plan. Nothing was changed.');}
       validateProposal(proposal);const u=response.usage??{};
       return {...proposal,model:config.model,usage:{inputTokens:u.input_tokens??0,outputTokens:u.output_tokens??0,cacheReadTokens:u.cache_read_input_tokens??0}};
-    } catch(error){if(error instanceof DomainError)throw error;throw new DomainError('ai_unavailable','DeepSeek could not provide a valid plan. Nothing was changed.');}
+    } catch(error){if(error instanceof DomainError)throw error;throw new DomainError('ai_unavailable','Sol could not provide a valid plan. Nothing was changed.');}
     finally{clearTimeout(timer);}
   };
   invoke.close=()=>allowance.close();return invoke;
