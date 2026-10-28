@@ -1,0 +1,45 @@
+{
+  "verifiedAt": "2026-10-28T07:30:49.965Z",
+  "provider": "Cerebras",
+  "model": "qwen-3.8-27b",
+  "scope": "Fresh genuine proposal-only migration checks on synthetic data. Existing operator allowance directories retained. No external actions or cached answers.",
+  "tests": {
+    "passed": 32,
+    "failed": 0,
+    "scope": "Local regression and mocked provider boundary tests; independent from the genuine call below."
+  },
+  "local": {
+    "name": "rehearse",
+    "ok": true,
+    "model": "qwen-3.8-27b",
+    "usage": {
+      "inputTokens": 348,
+      "outputTokens": 94,
+      "cacheReadTokens": 0
+    },
+    "decision": "plan",
+    "elapsedMs": 388
+  },
+  "publicVerification": {
+    "name": "rehearse",
+    "ok": true,
+    "model": "qwen-3.8-27b",
+    "usage": {
+      "inputTokens": 348,
+      "outputTokens": 94,
+      "cacheReadTokens": 0
+    },
+    "decision": "plan",
+    "executionRequested": false,
+    "elapsedMs": 2259
+  },
+  "deployment": {
+    "name": "rehearse",
+    "project_id": "appgprj_6ad1dfd0ff348191b69d1c767bb0e2b4",
+    "version_id": "appgprj_6ad1dfd0ff348191b69d1c767bb0e2b4~appgver_5e2c1db975bc8191b2e7f3d30b4b4bfd",
+    "deployment_id": "appgdep_6ae1a8e7a2e081918054fcde03a43b95",
+    "status": "succeeded",
+    "url": "https://rehearse-change-lab.choggyacc.chatgpt.site",
+    "commit_sha": "2fb34c7e8bc4fe7a1b33c5309d7fcfb33e49a93d"
+  }
+}

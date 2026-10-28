@@ -89,7 +89,7 @@ export class Workspace {
     try {
       if(command.op==='state')return {ok:true,state:this.state()};
       if(command.op==='propose') {
-        requireValue(this.propose,'ai_offline','Sol is not connected. You can still choose the filter directly.');
+        requireValue(this.propose,'ai_offline','AI is not connected. You can still choose the filter directly.');
         result={ok:true,proposal:await this.propose(command.intent)};
       }
       if(command.op==='simulate')result={ok:true,preview:await this.simulate(command.plan)};

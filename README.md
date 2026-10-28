@@ -1,4 +1,4 @@
-Current runtime: **GPT 6.1 Sol through AgentRouter**. See [configuration and verification](docs/sol-migration.md). Dated DeepSeek recordings remain historical evidence.
+Current runtime: **Qwen 3.8 27B through Cerebras**. See [configuration and fresh verification](docs/cerebras-migration.md). Earlier provider recordings and evidence remain dated history.
 
 # Rehearse — preview the blast radius
 
@@ -22,12 +22,12 @@ node server.js
 
 Open http://127.0.0.1:3281. A visitor receives a separate persistent SQLite workspace under ignored `data/local-workspaces/`. Without an API configuration the manual filter, simulation, real execution and restore still work; AI reports unavailability instead of using a canned response.
 
-For live AI, copy `.env.example` to ignored `.env` and supply an existing approved AgentRouter key and the genuine supported Claude Code client path. Then start `node --env-file=.env server.js`. The operator can reuse the existing private sibling configuration with `node --env-file=../decision-engine/.env server.js`; never copy that file into the public source.
+For live AI, copy `.env.example` to ignored `.env` and set CEREBRAS_API_KEY or CEREBRAS_KEY_FILE. Then start `node --env-file=.env server.js`. The operator can reuse the existing private sibling configuration with `node --env-file=../decision-engine/.env server.js`; never copy that file into the public source.
 
 ## Try the full loop
 
 1. Simulate **All teams**, closed before **2026-09-01**. Eight tickets match, exceeding the five-ticket limit; execution is blocked.
-2. Ask DeepSeek: “Delete resolved delivery tickets closed before 1 September 2026. Keep retention-held tickets.” Review the drafted Delivery filter.
+2. Ask AI: “Delete resolved delivery tickets closed before 1 September 2026. Keep retention-held tickets.” Review the drafted Delivery filter.
 3. Simulate it. The exact predicted diff removes **3 tickets, 6 notes and 3 attachment rows**, affects ticket history for three fictional customers, and preserves all four customer records/preferences, open tickets and the held ticket.
 4. Execute the reviewed deletion. The source now contains **9 tickets / 18 notes / 9 attachment rows**. Restore it: the original records return atomically.
 5. Simulate again, open **Explore an unexpected side effect**, and arm the faulty adapter. Execution attempts an additional customer preference update. The comparison detects the mismatch and rolls back both that update and the deletions. A receipt persists, while domain data and its version remain unchanged.
@@ -36,7 +36,7 @@ The Records and Receipts views read actual service state. A page reload does not
 
 ## AI's actual role
 
-DeepSeek v4 Flash interprets natural language into an allowlisted filter or asks for clarification. A missing cutoff is not silently guessed. It receives the entered request and typed-contract instructions, not a copy of the workspace database. It has no tools, SQL, approval or execution capability. Only SQLite produces the predicted effects. A draft never automatically simulates or writes domain records.
+Qwen 3.8 27B interprets natural language into an allowlisted filter or asks for clarification. A missing cutoff is not silently guessed. It receives the entered request and typed-contract instructions, not a copy of the workspace database. It has no tools, SQL, approval or execution capability. Only SQLite produces the predicted effects. A draft never automatically simulates or writes domain records.
 
 The real supported client is invoked with tools/MCP/session persistence disabled, bounded output, a 25-second deadline and an estimated request budget. There is no model retry or fallback. Both successful and failed attempts consume a persistent rolling allowance of 16 per hour; the public host also allows at most 4 AI requests per session per hour. Client cost limits are estimates, not provider-billing guarantees. Unit tests inject model responses and are not provider evidence; actual inference receipts are under `docs/evidence/`.
 
