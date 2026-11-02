@@ -1,4 +1,4 @@
-Current runtime: **Qwen 3.8 27B through Cerebras**. See [configuration and fresh verification](docs/cerebras-migration.md). Earlier provider recordings and evidence remain dated history.
+Current runtime: **GPT-OSS 120B through Cerebras**, using the operator's newly selected private key. See [current verification and setup](docs/gpt-oss-migration.md). Earlier Qwen, Sol, Astra and DeepSeek evidence remains dated history.
 
 # Rehearse — preview the blast radius
 
@@ -36,7 +36,7 @@ The Records and Receipts views read actual service state. A page reload does not
 
 ## AI's actual role
 
-Qwen 3.8 27B interprets natural language into an allowlisted filter or asks for clarification. A missing cutoff is not silently guessed. It receives the entered request and typed-contract instructions, not a copy of the workspace database. It has no tools, SQL, approval or execution capability. Only SQLite produces the predicted effects. A draft never automatically simulates or writes domain records.
+GPT-OSS 120B interprets natural language into an allowlisted filter or asks for clarification. A missing cutoff is not silently guessed. It receives the entered request and typed-contract instructions, not a copy of the workspace database. It has no tools, SQL, approval or execution capability. Only SQLite produces the predicted effects. A draft never automatically simulates or writes domain records.
 
 The real supported client is invoked with tools/MCP/session persistence disabled, bounded output, a 25-second deadline and an estimated request budget. There is no model retry or fallback. Both successful and failed attempts consume a persistent rolling allowance of 16 per hour; the public host also allows at most 4 AI requests per session per hour. Client cost limits are estimates, not provider-billing guarantees. Unit tests inject model responses and are not provider evidence; actual inference receipts are under `docs/evidence/`.
 

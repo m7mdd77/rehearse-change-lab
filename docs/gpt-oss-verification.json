@@ -1,0 +1,54 @@
+{
+  "at": "2026-11-02T09:16:57.226Z",
+  "provider": "Cerebras",
+  "model": "gpt-oss-120b",
+  "credentialSource": "New operator-selected private key file; no credential contents or personal file paths published.",
+  "tests": {
+    "passed": 32,
+    "failed": 0,
+    "scope": "Local regression tests with injected provider responses; separate from genuine model evidence."
+  },
+  "local": {
+    "name": "rehearse",
+    "ok": true,
+    "model": "gpt-oss-120b",
+    "usage": {
+      "inputTokens": 328,
+      "outputTokens": 166,
+      "cacheReadTokens": 0
+    },
+    "decision": "plan",
+    "elapsedMs": 479
+  },
+  "previousLocalAttempts": [
+    {
+      "name": "rehearse",
+      "ok": false,
+      "code": "ai_unavailable",
+      "message": "The AI could not provide a valid plan. Nothing was changed.",
+      "elapsedMs": 259
+    }
+  ],
+  "publicVerification": {
+    "name": "rehearse",
+    "ok": true,
+    "model": "gpt-oss-120b",
+    "usage": {
+      "inputTokens": 72,
+      "outputTokens": 139,
+      "cacheReadTokens": 256
+    },
+    "decision": "plan",
+    "executionRequested": false,
+    "elapsedMs": 4900
+  },
+  "deployment": {
+    "name": "rehearse",
+    "project_id": "appgprj_6ad1dfd0ff348191b69d1c767bb0e2b4",
+    "version_id": "appgprj_6ad1dfd0ff348191b69d1c767bb0e2b4~appgver_5e2c1db975bc8191b2e7f3d30b4b4bfd",
+    "deployment_id": "appgdep_6ae853899bf48191a09cb3efed6c60b9",
+    "status": "succeeded",
+    "url": "https://rehearse-change-lab.choggyacc.chatgpt.site",
+    "commit_sha": "2fb34c7e8bc4fe7a1b33c5309d7fcfb33e49a93d"
+  }
+}
