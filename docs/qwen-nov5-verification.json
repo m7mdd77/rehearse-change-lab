@@ -1,0 +1,46 @@
+{
+  "at": "2026-11-05T06:58:38.316Z",
+  "provider": "Cerebras",
+  "model": "qwen-3.8-27b",
+  "currentPrivateKeyReferencePreserved": true,
+  "tests": {
+    "passed": 32,
+    "failed": 0,
+    "scope": "Local regression tests with injected responses, separate from actual model calls."
+  },
+  "local": {
+    "name": "rehearse",
+    "ok": true,
+    "model": "qwen-3.8-27b",
+    "usage": {
+      "inputTokens": 348,
+      "outputTokens": 94,
+      "cacheReadTokens": 0
+    },
+    "decision": "plan",
+    "elapsedMs": 466
+  },
+  "previousLocalAttempts": [],
+  "publicVerification": {
+    "name": "rehearse",
+    "ok": true,
+    "model": "qwen-3.8-27b",
+    "usage": {
+      "inputTokens": 348,
+      "outputTokens": 94,
+      "cacheReadTokens": 0
+    },
+    "decision": "plan",
+    "executionRequested": false,
+    "elapsedMs": 4133
+  },
+  "deployment": {
+    "name": "rehearse",
+    "project_id": "appgprj_6ad1dfd0ff348191b69d1c767bb0e2b4",
+    "version_id": "appgprj_6ad1dfd0ff348191b69d1c767bb0e2b4~appgver_5e2c1db975bc8191b2e7f3d30b4b4bfd",
+    "deployment_id": "appgdep_6aec27d8a1688191b90807dd83fc936b",
+    "status": "succeeded",
+    "url": "https://rehearse-change-lab.choggyacc.chatgpt.site",
+    "commit_sha": "2fb34c7e8bc4fe7a1b33c5309d7fcfb33e49a93d"
+  }
+}
